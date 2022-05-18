@@ -49,17 +49,25 @@ public class Fibonacci {
 		return last;
 	}
 
-	// private int last = 0, next = 1; //first two elements of the fibonacci
-	// sequence aka base cases
+	// previously, we only generated single values, let's generate a stream of
+	// values up to the nth fibonacci element
+	private int last = 0, next = 1; // first two elements of the fibonacci sequence aka base cases
 
-	// public IntStream stream() {
-	//
-	// }
+	public IntStream fibonacciStream() {
+		return IntStream.generate(() -> { // we use a lambda function to generate each value
+			int lastOld = last;
+			last = next;
+			next = lastOld + last;
+			return lastOld;
+		});
+	}
 
 	public static void main(String... strings) {
 		System.out.println(fibonacciRecursive(5));
 		System.out.println(fibonacciMemoization(5));
 		System.out.println(fibonacciIterative(5));
+		Fibonacci f = new Fibonacci();
+		f.fibonacciStream().limit(20).forEachOrdered(System.out::println);
 	}
 
 }
