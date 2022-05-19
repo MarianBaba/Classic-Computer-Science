@@ -8,7 +8,7 @@ public class Fibonacci {
 
 	// Fibonacci sequence = element n is the sum o n - 1 and n - 2, except for the
 	// first two elements: 1 and 0
-	// 0, 1, 1, 2, 3, 5, 8, 12, 20, 32 ...
+	// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
 
 	// the call tree of this method grows exponentially: comouting
 	// fibonacciOneValue(20) results in around 20k calls (inefficient)
