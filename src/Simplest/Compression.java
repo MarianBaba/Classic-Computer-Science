@@ -1,4 +1,4 @@
-package Simplest;
+package simplest;
 
 import java.util.BitSet;
 
