@@ -1,5 +1,6 @@
 package Search;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Gene {
@@ -35,6 +36,38 @@ public class Gene {
         public int compareTo(Codon other) {
             return comparator.compare(this, other);
         }
+    }
+
+    private ArrayList<Codon> codons = new ArrayList<>();
+
+    public Gene(String geneStr) {
+        for (int i = 0; i < geneStr.length() - 3; i += 3) {
+            codons.add(new Codon(geneStr.substring(i, i + 3)));
+        }
+    }
+
+    // let's implement a LINEAR SEARCH for a gene string: we want to find out if a
+    // gene contains a codon,
+    // so we simply search the array list of codons linearly: one element at the
+    // time, until we reach the end
+    // of the data structure or we find the element we are looking for
+
+    public boolean linearContains(Codon key) {
+        for (Codon codon : codons) {
+            if (codon.compareTo(key) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        String geneStr = "ACGTGGCTCTCTAACGTACGTACGTACGGGGTTTATATATACCCTAGGACTCCCTTT";
+        Gene myGene = new Gene(geneStr);
+        Codon acg = new Codon("ACG");
+        Codon gat = new Codon("GAT");
+        System.out.println(myGene.linearContains(acg)); // true
+        System.out.println(myGene.linearContains(gat)); // false
     }
 
 }
