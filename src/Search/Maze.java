@@ -1,6 +1,8 @@
 package Search;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Maze {
 
@@ -110,6 +112,33 @@ public class Maze {
             sb.append(System.lineSeparator());
         }
         return sb.toString();
+    }
+
+    public boolean goalTest(MazeLocation ml) {
+        return goal.equals(ml);
+    }
+
+    // now, we defined the maze and all the functions that let us operate on it
+    // but we need a way to MOVE in out maze
+
+    // this function returns the possible cells to which we
+    // could move (checks above, below, to the right and to
+    // the left of a MazeLocation to see where is free)
+    public List<MazeLocation> successors(MazeLocation ml) {
+        List<MazeLocation> locations = new ArrayList<>();
+        if (ml.row + 1 < rows && grid[ml.row + 1][ml.column] != Cell.BLOCKED) {
+            locations.add(new MazeLocation(ml.row + 1, ml.column));
+        }
+        if (ml.row - 1 >= 0 && grid[ml.row - 1][ml.column] != Cell.BLOCKED) {
+            locations.add(new MazeLocation(ml.row - 1, ml.column));
+        }
+        if (ml.column + 1 < columns && grid[ml.row][ml.column + 1] != Cell.BLOCKED) {
+            locations.add(new MazeLocation(ml.row, ml.column + 1));
+        }
+        if (ml.column - 1 >= 0 && grid[ml.row][ml.column - 1] != Cell.BLOCKED) {
+            locations.add(new MazeLocation(ml.row, ml.column - 1));
+        }
+        return locations;
     }
 
     public static void main(String... strings) {
