@@ -145,6 +145,8 @@ public class Maze {
 
     // breadth-first-search
 
+    // a* algo
+
     public static void main(String... strings) {
         Maze m = new Maze();
         System.out.println(m);
