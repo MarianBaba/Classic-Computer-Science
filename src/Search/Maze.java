@@ -141,6 +141,8 @@ public class Maze {
         return locations;
     }
 
+    // depth-first-search
+
     public static void main(String... strings) {
         Maze m = new Maze();
         System.out.println(m);
