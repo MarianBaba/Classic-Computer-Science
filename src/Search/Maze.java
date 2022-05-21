@@ -143,6 +143,8 @@ public class Maze {
 
     // depth-first-search
 
+    // breadth-first-search
+
     public static void main(String... strings) {
         Maze m = new Maze();
         System.out.println(m);
