@@ -1,6 +1,7 @@
 package Search;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class Gene {
@@ -61,6 +62,31 @@ public class Gene {
         return false;
     }
 
+    // now, let's implement the BINARY SEARCH for a gene string. It's complexity is
+    // = O(n logn), the size of the
+    // search space is always cut in half
+    // we need to sort the data structure we want to search (could be a
+    // disadvantage)
+
+    public boolean binaryContains(Codon key) {
+        ArrayList<Codon> sortedCodons = new ArrayList<Codon>(codons);
+        Collections.sort(sortedCodons);
+        int low = 0;
+        int high = sortedCodons.size() - 1;
+        while (low <= high) {
+            int middle = (low + high) / 2;
+            int comparison = codons.get(middle).compareTo(key);
+            if (comparison < 0) {
+                low = middle + 1;
+            } else if (comparison > 0) {
+                high = middle - 1;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         String geneStr = "ACGTGGCTCTCTAACGTACGTACGTACGGGGTTTATATATACCCTAGGACTCCCTTT";
         Gene myGene = new Gene(geneStr);
@@ -68,6 +94,8 @@ public class Gene {
         Codon gat = new Codon("GAT");
         System.out.println(myGene.linearContains(acg)); // true
         System.out.println(myGene.linearContains(gat)); // false
+        System.out.println(myGene.binaryContains(acg)); // true
+        System.out.println(myGene.binaryContains(gat)); // false
     }
 
 }
