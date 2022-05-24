@@ -36,6 +36,7 @@ public class Maze {
             this.row = row;
             this.column = column;
         }
+        
 
         @Override
         public int hashCode() {
