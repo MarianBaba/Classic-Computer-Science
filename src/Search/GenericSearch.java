@@ -32,6 +32,34 @@ public class GenericSearch {
         return false;
     }
 
+    //node class
+    public static class Node<T> implements Comparable<Node<T>> {
+		
+		final T state;
+		Node<T> parent;
+		double cost;
+		double heuristic;
+		
+		Node(T state, Node<T> parent) {
+			this.state = state;
+			this.parent = parent;
+		}
+		
+		Node(T state, Node<T> parent, double cost, double heuristic) {
+			this.state = state;
+			this.parent = parent;
+			this.cost = cost;
+			this.heuristic = heuristic;
+		}
+		
+		@Override
+		public int compareTo(Node<T> other) {
+			Double mine = cost + heuristic;
+			Double theirs = other.cost + other.heuristic;
+			return mine.compareTo(theirs);
+		}
+	}
+
     public static void main(String... strings) {
         System.out.println(linearContains(List.of(1, 5, 15, 15, 15, 15, 20), 5));
         System.out.println(binaryContains(List.of("a", "d", "e", "f", "z"), "f"));
