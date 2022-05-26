@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Search.GenericSearch.Node;
+
 public class Maze {
 
     // CELL enum
@@ -36,7 +38,6 @@ public class Maze {
             this.row = row;
             this.column = column;
         }
-        
 
         @Override
         public int hashCode() {
@@ -142,15 +143,35 @@ public class Maze {
         return locations;
     }
 
-    // depth-first-search
+    public void mark(List<MazeLocation> path) {
+        for (MazeLocation ml : path) {
+            grid[ml.row][ml.column] = Cell.PATH;
+            grid[start.row][start.column] = Cell.START;
+            grid[goal.row][goal.column] = Cell.GOAL;
+        }
+    }
 
-    // breadth-first-search
-
-    // a* algo
+    public void clear(List<MazeLocation> path) {
+        for (MazeLocation ml : path) {
+            grid[ml.row][ml.column] = Cell.EMPTY;
+        }
+        grid[start.row][start.column] = Cell.START;
+        grid[goal.row][goal.column] = Cell.GOAL;
+    }
 
     public static void main(String... strings) {
         Maze m = new Maze();
         System.out.println(m);
+
+        Node<MazeLocation> solution1 = GenericSearch.dfs(m.start, m::goalTest, m::successors);
+        if (solution1 == null) {
+            System.out.println("No solution found using dfs");
+        } else {
+            List<MazeLocation> path1 = GenericSearch.nodeToPath(solution1);
+            m.mark(path1);
+            System.out.println(m);
+            m.clear(path1);
+        }
     }
 
 }
