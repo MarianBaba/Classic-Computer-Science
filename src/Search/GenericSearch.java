@@ -1,5 +1,6 @@
 package Search;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -93,6 +94,18 @@ public class GenericSearch {
             }
         }
         return null; // went through everything and never found goal
+    }
+
+    // method for recostructing the path from goal to start
+    public static <T> List<T> nodeToPath(Node<T> node) {
+        List<T> path = new ArrayList<T>();
+        path.add(node.state);
+        // work backwards from end to front
+        while (node.parent != null) {
+            node = node.parent;
+            path.add(0, node.state); // add to front
+        }
+        return path;
     }
 
     public static void main(String... strings) {
