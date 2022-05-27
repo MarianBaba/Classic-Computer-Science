@@ -2,7 +2,9 @@ package Search;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import java.util.function.Function;
@@ -106,6 +108,33 @@ public class GenericSearch {
             path.add(0, node.state); // add to front
         }
         return path;
+    }
+
+    public static <T> Node<T> bfs(T initial, Predicate<T> goalTest, Function<T, List<T>> successors) {
+        // now the frontier is implemented with a queue
+        Queue<Node<T>> frontier = new LinkedList<>();
+        frontier.offer(new Node<>(initial, null));
+
+        Set<T> explored = new HashSet<T>();
+        explored.add(initial);
+
+        while (!frontier.isEmpty()) {
+            Node<T> currentNode = frontier.poll();
+            T currentState = currentNode.state;
+
+            if (goalTest.test(currentState)) {
+                return currentNode;
+            }
+
+            for (T child : successors.apply(currentState)) {
+                if (explored.contains(child)) {
+                    continue;
+                }
+                explored.add(child);
+                frontier.offer(new Node<>(child, currentNode));
+            }
+        }
+        return null;
     }
 
     public static void main(String... strings) {
