@@ -166,6 +166,13 @@ public class Maze {
         return Math.sqrt((xdist * xdist) + (ydist * ydist));
     }
 
+    // manhattan distance (only 4 directions to move)
+    public double manhattanDistance(MazeLocation ml) {
+        int xdist = Math.abs(ml.column - goal.column);
+        int ydist = Math.abs(ml.row - goal.row);
+        return (xdist + ydist);
+    }
+
     public static void main(String... strings) {
         Maze m = new Maze();
         System.out.println(m);
