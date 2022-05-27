@@ -196,6 +196,16 @@ public class Maze {
             System.out.println(m);
             m.clear(path2);
         }
+
+        Node<MazeLocation> solution3 = GenericSearch.astar(m.start, m::goalTest, m::successors, m::manhattanDistance);
+        if (solution3 == null) {
+            System.out.println("No solution found using a*");
+        } else {
+            List<MazeLocation> path3 = GenericSearch.nodeToPath(solution3);
+            m.mark(path3);
+            System.out.println(m);
+            m.clear(path3);
+        }
     }
 
 }
