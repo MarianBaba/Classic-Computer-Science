@@ -159,6 +159,13 @@ public class Maze {
         grid[goal.row][goal.column] = Cell.GOAL;
     }
 
+    // euclidean distance in a maze
+    public double euclideanDistance(MazeLocation ml) {
+        int xdist = ml.column - goal.column;
+        int ydist = ml.row - goal.row;
+        return Math.sqrt((xdist * xdist) + (ydist * ydist));
+    }
+
     public static void main(String... strings) {
         Maze m = new Maze();
         System.out.println(m);
