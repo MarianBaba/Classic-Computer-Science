@@ -1,5 +1,6 @@
 package ConstraintSatisfaction;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -93,6 +94,22 @@ public class WordGrid {
             }
         }
         return domain;
+    }
+
+    private void fillRight(List<List<GridLocation>> domain, int row, int column, int length) {
+
+    }
+
+    private void fillDiagonalRight(List<List<GridLocation>> domain, int row, int column, int length) {
+
+    }
+
+    private void fillDown(List<List<GridLocation>> domain, int row, int column, int length) {
+
+    }
+
+    private void fillDiagonalLeft(List<List<GridLocation>> domain, int row, int column, int length) {
+
     }
 
 }
