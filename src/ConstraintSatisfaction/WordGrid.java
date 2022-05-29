@@ -125,7 +125,13 @@ public class WordGrid {
     }
 
     private void fillDiagonalLeft(List<List<GridLocation>> domain, int row, int column, int length) {
-
+        List<GridLocation> locations = new ArrayList<>();
+        int c = column;
+        for (int r = row; r < (row + length); r++) {
+            locations.add(new GridLocation(r, c));
+            c--;
+        }
+        domain.add(locations);
     }
 
 }
