@@ -97,7 +97,11 @@ public class WordGrid {
     }
 
     private void fillRight(List<List<GridLocation>> domain, int row, int column, int length) {
-
+        List<GridLocation> locations = new ArrayList<>();
+        for (int c = column; c < (column + length); c++) {
+            locations.add(new GridLocation(row, c));
+        }
+        domain.add(locations);
     }
 
     private void fillDiagonalRight(List<List<GridLocation>> domain, int row, int column, int length) {
