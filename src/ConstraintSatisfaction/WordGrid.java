@@ -70,4 +70,29 @@ public class WordGrid {
         return sb.toString();
     }
 
+    public List<List<GridLocation>> generateDomain(String word) {
+        List<List<GridLocation>> domain = new ArrayList<>();
+        int length = word.length();
+
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                if (column + length <= columns) {
+                    fillRight(domain, row, column, length);
+
+                    if (row + length <= rows) {
+                        fillDiagonalRight(domain, row, column, length);
+                    }
+                }
+                if (row + length <= rows) {
+                    fillDown(domain, row, column, length);
+
+                    if (column - length >= 0) {
+                        fillDiagonalLeft(domain, row, column, length);
+                    }
+                }
+            }
+        }
+        return domain;
+    }
+
 }
