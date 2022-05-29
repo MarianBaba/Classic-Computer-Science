@@ -54,6 +54,7 @@ public class WordGrid {
         }
     }
 
+    // TODO -> fix
     public void mark(String word, List<GridLocation> locations) {
         for (int i = 0; i < word.length(); i++) {
             GridLocation location = locations.get(i);
