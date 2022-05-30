@@ -54,7 +54,6 @@ public class WordGrid {
         }
     }
 
-    // TODO -> fix
     public void mark(String word, List<GridLocation> locations) {
         for (int i = 0; i < word.length(); i++) {
             GridLocation location = locations.get(i);
@@ -107,7 +106,7 @@ public class WordGrid {
 
     private void fillDiagonalRight(List<List<GridLocation>> domain, int row, int column, int length) {
         List<GridLocation> locations = new ArrayList<>();
-        int r = rows;
+        int r = row;
         for (int c = column; c < (column + length); c++) {
             locations.add(new GridLocation(r, c));
             r++;
